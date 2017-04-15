@@ -33,7 +33,6 @@ skysphereLoader.load('resources/sky.png', onSkysphereTextureLoaded);
 function onSkysphereTextureLoaded(texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set(4, 4);
 
     var geometry = new THREE.SphereGeometry(5000, 128, 128);
     // var geometry = new THREE.BoxGeometry(1000, 1000, 1000);
