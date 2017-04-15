@@ -16,7 +16,7 @@ var manager = new WebVRManager(renderer, effect);
 window.addEventListener('resize', onResize, true);
 window.addEventListener('vrdisplaypresentchange', onResize, true);
 
-var geometry = new THREE.BoxGeometry(1, 1, 1);
+var geometry = new THREE.BoxGeometry(2, 1, 3);
 var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 var cube = new THREE.Mesh(geometry, material);
 cube.position.set(0, 0, -5);
