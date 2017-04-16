@@ -82,7 +82,7 @@ mtlLoader.load('station.mtl', function (materials) {
     objLoader.load('station.obj', function (object) {
 
         object.scale.set(1, 1, 1);
-        object.position.set(0, 0, -20);
+        object.position.set(0, 0, -100);
         scene.add(object);
 
     }, onProgress, onError);
