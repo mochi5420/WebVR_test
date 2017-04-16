@@ -1,5 +1,5 @@
 //  レンダラー生成
-var renderer = new THREE.WebGLRenderer({ antialias: true });
+var renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 //document.body.appendChild(renderer.domElement);     //これでHTMLに貼り付けっぽい？
 document.getElementById('container').appendChild(renderer.domElement);
@@ -8,7 +8,7 @@ document.getElementById('container').appendChild(renderer.domElement);
 var scene = new THREE.Scene();
 
 //  カメラ生成
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 15000);
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1500);
 
 //  光源生成
 var directionalLight = new THREE.DirectionalLight(0xffeedd);
@@ -40,7 +40,7 @@ function onSkysphereTextureLoaded(texture) {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
 
-    var geometry = new THREE.SphereGeometry(10000, 128, 128);
+    var geometry = new THREE.SphereGeometry(1000, 128, 128);
 
     var material = new THREE.MeshBasicMaterial({
         map: texture,
@@ -85,6 +85,7 @@ mtlLoader.load('station.mtl', function (materials) {
         object.scale.set(0.1, 0.1, 0.1);
         object.position.set(0, 0, 0);
 
+        //  物体中心で回転させるためにダミーオブジェクトにadd
         stationObj.add(object);
      
         scene.add(stationObj);
@@ -92,13 +93,6 @@ mtlLoader.load('station.mtl', function (materials) {
     }, onProgress, onError);
 
 });
-
-//var geometry = new THREE.BoxGeometry(2, 1, 3);
-//var material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-//var cube = new THREE.Mesh(geometry, material);
-//cube.position.set(0, 0, -5);
-//scene.add(cube);
-
 
 //  アニメーションループ
 var lastRender = 0;
