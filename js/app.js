@@ -76,7 +76,7 @@ mtlLoader.load('station.mtl', function (materials) {
     objLoader.setPath('resources/station/');
     objLoader.load('station.obj', function (object) {
 
-        object.scale.set(10, 10, 10);
+        object.scale.set(5, 5, 5);
         object.position.set(0, 0, 0);
         scene.add(object);
 
@@ -84,11 +84,11 @@ mtlLoader.load('station.mtl', function (materials) {
 
 });
 
-var geometry = new THREE.BoxGeometry(2, 1, 3);
-var material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-var cube = new THREE.Mesh(geometry, material);
-cube.position.set(0, 0, -5);
-scene.add(cube);
+//var geometry = new THREE.BoxGeometry(2, 1, 3);
+//var material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+//var cube = new THREE.Mesh(geometry, material);
+//cube.position.set(0, 0, -5);
+//scene.add(cube);
 
 
 //アニメーションループ
@@ -97,8 +97,8 @@ function animate(timestamp) {
     var delta = Math.min(timestamp - lastRender, 500);
     lastRender = timestamp;
 
-    cube.rotation.x += delta * 0.00015;
-    cube.rotation.y += delta * 0.00025;
+    //cube.rotation.x += delta * 0.00015;
+    //cube.rotation.y += delta * 0.00025;
 
     // VRコントローラのupdate
     controls.update();
