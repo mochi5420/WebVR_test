@@ -69,8 +69,9 @@ var onError = function (xhr) { };
 
 THREE.Loader.Handlers.add(/\.dds$/i, new THREE.DDSLoader());
 
-//  宇宙ステーション
+//  宇宙ステーション(http://tf3dm.com/3d-model/esa-tardis-figr-station-mk3-95100.html)
 var mtlLoader = new THREE.MTLLoader();
+var object;
 mtlLoader.setPath('resources/station/');
 mtlLoader.load('station.mtl', function (materials) {
 
@@ -102,8 +103,8 @@ function animate(timestamp) {
     var delta = Math.min(timestamp - lastRender, 500);
     lastRender = timestamp;
 
-    //cube.rotation.x += delta * 0.00015;
-    //cube.rotation.y += delta * 0.00025;
+    object.rotation.x += delta * 0.00015;
+    object.rotation.y += delta * 0.00025;
 
     // VRコントローラのupdate
     controls.update();
