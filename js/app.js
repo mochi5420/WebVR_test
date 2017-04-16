@@ -103,8 +103,8 @@ function animate(timestamp) {
     var delta = Math.min(timestamp - lastRender, 500);
     lastRender = timestamp;
 
-    object.rotation.x += delta * 0.00015;
-    object.rotation.y += delta * 0.00025;
+    object.rotation.x += delta * 0.15;
+    object.rotation.y += delta * 0.25;
 
     // VRƒRƒ“ƒgƒ[ƒ‰‚Ìupdate
     controls.update();
