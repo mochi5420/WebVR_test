@@ -63,22 +63,24 @@ var onProgress = function (xhr) {
 var onError = function (xhr) { };
 
 //宇宙ステーション
-var ObjLoader = new THREE.OBJMTLLoader();
-    ObjLoader.load('resources/station/station.obj', 'resources/station/station.mtl', function (object) {
-    var objmodel = object.clone();
-    objmodel.scale.set(10, 10, 10);            // 縮尺の初期化
-    objmodel.rotation.set(0, 0, 0);         // 角度の初期化
-    objmodel.position.set(0, 0, 0);         // 位置の初期化
+var mtlLoader = new THREE.MTLLoader();
+mtlLoader.setPath('resources/station/');
+mtlLoader.load('station.mtl', function (materials) {
 
-    // objをObject3Dで包む
-    var obj = new THREE.Object3D();
-    obj.add(objmodel);
+    materials.preload();
 
-    scene.add(obj);                     // sceneに追加
-    }, onProgress, onError );        // obj mtl データは(.obj, .mtl. 初期処理, 読み込み時の処理, エラー処理)
-                                    // と指定する。
+    var objLoader = new THREE.OBJLoader();
+    objLoader.setMaterials(materials);
+    objLoader.setPath('resources/station/');
+    objLoader.load('station.obj', function (object) {
 
+        object.scale.set(10, 10, 10);
+        object.position.set(0, 0, 0);
+        scene.add(object);
 
+    }, onProgress, onError);
+
+});
 
 var geometry = new THREE.BoxGeometry(2, 1, 3);
 var material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
