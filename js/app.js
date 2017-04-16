@@ -106,9 +106,9 @@ function animate(timestamp) {
     var delta = Math.min(timestamp - lastRender, 500);
     lastRender = timestamp;
 
-    stationObj.rotation.x += delta * 0.003;
-    stationObj.rotation.y += delta * 0.005;
-    stationObj.position.z = -500;
+    stationObj.rotation.x += delta * 0.0003;
+    stationObj.rotation.y += delta * 0.0005;
+    stationObj.position.z = -700;
     // VRƒRƒ“ƒgƒ[ƒ‰‚Ìupdate
     controls.update();
 
