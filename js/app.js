@@ -71,7 +71,7 @@ THREE.Loader.Handlers.add(/\.dds$/i, new THREE.DDSLoader());
 
 //  宇宙ステーション(http://tf3dm.com/3d-model/esa-tardis-figr-station-mk3-95100.html)
 var mtlLoader = new THREE.MTLLoader();
-var object;
+var object = new THREE.Object3D();
 mtlLoader.setPath('resources/station/');
 mtlLoader.load('station.mtl', function (materials) {
 
