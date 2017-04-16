@@ -26,7 +26,7 @@ newmtl Rim
 	Kd 0.7000 0.7000 0.7000
 	Ks 0.2700 0.2700 0.2700
 	Ke 0.0000 0.0000 0.0000
-	map_Ka std.jpg
+	map_Ka \std.jpg
 	map_Kd \std.jpg
 
 newmtl wheel_girders
@@ -42,7 +42,7 @@ newmtl wheel_girders
 	Ke 0.0000 0.0000 0.0000
 	map_Ka \rust.JPG
 	map_Kd \rust.JPG
-	map_refl Map__9_Raytrace.tga
+	map_refl \Map__9_Raytrace.tga
 
 newmtl spokes
 	Ns 13.0842
