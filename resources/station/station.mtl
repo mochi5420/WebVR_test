@@ -40,8 +40,8 @@ newmtl wheel_girders
 	Kd 0.7804 0.6902 0.6824
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka \rust.JPG
-	map_Kd \rust.JPG
+	map_Ka \rust.jpg
+	map_Kd \rust.jpg
 	map_refl \Map__9_Raytrace.tga
 
 newmtl spokes
