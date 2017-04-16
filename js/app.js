@@ -71,7 +71,7 @@ THREE.Loader.Handlers.add(/\.dds$/i, new THREE.DDSLoader());
 
 //  宇宙ステーション(http://tf3dm.com/3d-model/esa-tardis-figr-station-mk3-95100.html)
 var mtlLoader = new THREE.MTLLoader();
-var object = new THREE.Object3D();
+var stationObj = new THREE.Object3D();
 mtlLoader.setPath('resources/station/');
 mtlLoader.load('station.mtl', function (materials) {
 
@@ -83,8 +83,11 @@ mtlLoader.load('station.mtl', function (materials) {
     objLoader.load('station.obj', function (object) {
 
         object.scale.set(0.1, 0.1, 0.1);
-        object.position.set(0, 0, -1000);
-        scene.add(object);
+        object.position.set(0, 0, -500);
+
+        stationObj.add(object);
+     
+        scene.add(stationObj);
 
     }, onProgress, onError);
 
@@ -103,8 +106,8 @@ function animate(timestamp) {
     var delta = Math.min(timestamp - lastRender, 500);
     lastRender = timestamp;
 
-    object.rotation.x += delta * 30;
-    object.rotation.y += delta * 50;
+    stationObj.rotation.x += delta * 3;
+    stationObj.rotation.y += delta * 5;
 
     // VRコントローラのupdate
     controls.update();
