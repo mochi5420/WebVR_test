@@ -81,7 +81,7 @@ mtlLoader.load('station.mtl', function (materials) {
     objLoader.setPath('resources/station/');
     objLoader.load('station.obj', function (object) {
 
-        object.scale.set(1, 1, 1);
+        object.scale.set(0.1, 0.1, 0.1);
         object.position.set(0, 0, -100);
         scene.add(object);
 
