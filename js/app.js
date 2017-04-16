@@ -83,7 +83,7 @@ mtlLoader.load('station.mtl', function (materials) {
     objLoader.load('station.obj', function (object) {
 
         object.scale.set(0.1, 0.1, 0.1);
-        object.position.set(0, 0, -500);
+        object.position.set(0, 0, 0);
 
         stationObj.add(object);
      
@@ -106,9 +106,9 @@ function animate(timestamp) {
     var delta = Math.min(timestamp - lastRender, 500);
     lastRender = timestamp;
 
-    stationObj.rotation.x += delta * 3;
-    stationObj.rotation.y += delta * 5;
-
+    stationObj.rotation.x += delta * 0.003;
+    stationObj.rotation.y += delta * 0.005;
+    stationObj.position.z = -500;
     // VRÉRÉìÉgÉçÅ[ÉâÇÃupdate
     controls.update();
 
