@@ -62,6 +62,8 @@ var onProgress = function (xhr) {
 //.obj .mtl が読み込めなかったときのエラー処理
 var onError = function (xhr) { };
 
+THREE.Loader.Handlers.add(/\.dds$/i, new THREE.DDSLoader());
+
 //宇宙ステーション
 var mtlLoader = new THREE.MTLLoader();
 mtlLoader.setPath('resources/station/');
