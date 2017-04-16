@@ -1,13 +1,14 @@
 //レンダラー生成
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);     //これでHTMLに貼り付けっぽい？
+//document.body.appendChild(renderer.domElement);     //これでHTMLに貼り付けっぽい？
+document.getElementById('container').appendChild(renderer.domElement);
 
 //シーン生成
 var scene = new THREE.Scene();
 
 //カメラ生成
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 15000);
 
 //VR用コントローラ生成
 var controls = new THREE.VRControls(camera);
@@ -23,29 +24,61 @@ var manager = new WebVRManager(renderer, effect);
 window.addEventListener('resize', onResize, true);
 window.addEventListener('vrdisplaypresentchange', onResize, true);
 
-/////////////////////////////////
-//      オブジェクト生成        //
-/////////////////////////////////
 
-// Skysphereの生成
+///////////  オブジェクト生成  ////////////
+
+//Skysphere
 var skysphereLoader = new THREE.TextureLoader();
-skysphereLoader.load('resources/sky.png', onSkysphereTextureLoaded);
+skysphereLoader.load('resources/sky3.png', onSkysphereTextureLoaded);
 function onSkysphereTextureLoaded(texture) {
+
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
 
-    var geometry = new THREE.SphereGeometry(5000, 128, 128);
-    // var geometry = new THREE.BoxGeometry(1000, 1000, 1000);
+    var geometry = new THREE.SphereGeometry(10000, 128, 128);
+
     var material = new THREE.MeshBasicMaterial({
         map: texture,
         color: 0xffffff,
-        side: THREE.BackSide
+        side: THREE.BackSide    //裏面描画
     });
 
     var skysphere = new THREE.Mesh(geometry, material);
-    skysphere.position.z = 0;
+
+    skysphere.position.set(0, 0, 0);
+
     scene.add(skysphere);
 }
+
+//Obj
+//.obj .mtl を読み込んでいる時の処理
+var onProgress = function (xhr) {
+    if (xhr.lengthComputable) {
+        var percentComplete = xhr.loaded / xhr.total * 100;
+        console.log(Math.round(percentComplete, 2) + '% downloaded');
+    }
+};
+
+//.obj .mtl が読み込めなかったときのエラー処理
+var onError = function (xhr) { };
+
+//宇宙ステーション
+var ObjLoader = new THREE.OBJMTLLoader();
+    ObjLoader.load('resources/station/station.obj', 'resources/station/station.mtl', function (object) {
+    var objmodel = object.clone();
+    objmodel.scale.set(10, 10, 10);            // 縮尺の初期化
+    objmodel.rotation.set(0, 0, 0);         // 角度の初期化
+    objmodel.position.set(0, 0, 0);         // 位置の初期化
+
+    // objをObject3Dで包む
+    var obj = new THREE.Object3D();
+    obj.add(objmodel);
+
+    scene.add(obj);                     // sceneに追加
+    }, onProgress, onError );        // obj mtl データは(.obj, .mtl. 初期処理, 読み込み時の処理, エラー処理)
+                                    // と指定する。
+
+
 
 var geometry = new THREE.BoxGeometry(2, 1, 3);
 var material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
