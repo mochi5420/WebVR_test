@@ -1,5 +1,5 @@
 //  レンダラー生成
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 //document.body.appendChild(renderer.domElement);     //これでHTMLに貼り付けっぽい？
 document.getElementById('container').appendChild(renderer.domElement);
@@ -82,7 +82,7 @@ mtlLoader.load('station.mtl', function (materials) {
     objLoader.load('station.obj', function (object) {
 
         object.scale.set(0.1, 0.1, 0.1);
-        object.position.set(0, 0, -100);
+        object.position.set(0, 0, -1000);
         scene.add(object);
 
     }, onProgress, onError);
